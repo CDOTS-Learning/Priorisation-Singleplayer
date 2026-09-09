@@ -1,8 +1,8 @@
 import { type ReactNode } from "react";
 import { useRoute } from "wouter";
 import { useRoom } from "@/lib/useRoom";
-import { RoomBar, OverviewBoard } from "@/components/game-parts";
-import { FRAMING, GROUPS, GROUP_LABEL, GROUP_DESC, CARD_BY_ID, type Group } from "@shared/content";
+import { RoomBar, SortStage, OverviewBoard } from "@/components/game-parts";
+import { CARDS, FRAMING, GROUPS, GROUP_LABEL, GROUP_DESC, CARD_BY_ID, type Group } from "@shared/content";
 import { printHtml, esc } from "@/lib/print";
 
 const COLORS: Record<Group, [string, string]> = {
@@ -33,6 +33,9 @@ export default function Facilitator() {
   const nameOf = (cardId: string) => CARD_BY_ID[cardId]?.name ?? cardId;
   const descOf = (cardId: string) => CARD_BY_ID[cardId]?.description ?? "";
   const cardsIn = (g: Group) => gameState.assignments.filter((a) => a.group === g);
+  // The card the participant is sorting right now — the facilitator sees it too,
+  // so they can follow along and answer questions about it.
+  const nextCard = CARDS.find((c) => !gameState.assignments.some((a) => a.cardId === c.id)) ?? null;
 
   const overviewDoc = () => {
     const col = (g: Group) => {
@@ -89,7 +92,8 @@ export default function Facilitator() {
       <>
         <div className="tg-round-line"><span className="tg-eyebrow">Live · sorting ({gameState.assignments.length} of {gameState.totalCards})</span></div>
         <h1 className="tg-topic" style={{ marginBottom: "1.2rem" }}>Following along</h1>
-        <OverviewBoard assignments={gameState.assignments} onMove={() => {}} readOnly />
+        <SortStage card={nextCard} sorted={gameState.assignments.length} total={gameState.totalCards}
+          assignments={gameState.assignments} onAssign={() => {}} readOnly />
       </>
     );
   }
