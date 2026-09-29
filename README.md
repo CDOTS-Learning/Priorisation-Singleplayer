@@ -4,8 +4,8 @@ A facilitated sorting exercise for **one participant plus a facilitator**. The
 participant sorts 24 learning services into **Yes / Maybe / No**, one card at a
 time, and the group talks through the result.
 
-- **Live:** https://priorisation-singleplayer.onrender.com
-- **Multiplayer version:** [`Priorisation-Multiplayer`](https://github.com/Helti2636/Priorisation-Multiplayer) — same exercise for 2–5 players
+- **Live:** https://priorisation-singleplayer-nu3p.onrender.com
+- **Multiplayer version:** [`Priorisation-Multiplayer`](https://github.com/CDOTS-Learning/Priorisation-Multiplayer) — same exercise for 2–5 players
 
 ## How a session runs
 
@@ -65,8 +65,12 @@ Render Web Service, runtime **Node**:
 - No environment variables, no database.
 
 Every push to `main` triggers a new deployment automatically (about 3 minutes).
-See `RENDER-SETUP.md` in this repo — the hosting still needs to be moved into
-the team's own account.
+The service runs on the team's own Render account — see `RENDER-SETUP.md` for
+how it is set up and what to do when a deployment misbehaves.
+
+> **An older copy may still answer at https://priorisation-singleplayer.onrender.com.**
+> That one belongs to the previous maintainer's personal account, receives no
+> updates and will disappear. Always share the link at the top of this page.
 
 ## Good to know
 
